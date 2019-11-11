@@ -1,0 +1,131 @@
+import java.util.InputMismatchException;
+import org.junit.Rule;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.io.*;
+import java.util.Scanner;
+import org.junit.Test;
+
+
+public class MainTest {
+	
+	@Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+	Main main = new Main();
+	
+	
+//	@Test(expected = InputMismatchException.class)
+//	public void test_method() {
+//		String input = "a";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		
+//		Scanner keyboard = new Scanner(System.in);
+//        System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle.");
+//        System.out.println("Enter 1 for sides, 2 for points: ");
+//        int method = keyboard.nextInt();
+////        double side1 = keyboard.nextDouble();
+//        keyboard.close();
+////		assertEquals(3, side1, 0.0);
+//	}
+	
+	@Test
+	public void test_getNextDouble_1() {
+		String input = "3 5";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Scanner keyboard = new Scanner(System.in);
+		double side = main.getNextDouble("Enter first side length: ", keyboard);
+//        keyboard.close();
+		System.out.println(side);
+		
+		double side1 = main.getNextDouble("Enter first side length: ", keyboard);
+//      keyboard.close();
+		System.out.println(side1);
+		
+		assertEquals(3, side, 0.0);
+	}
+	
+//	@Test
+//	public void test_getNextInt() {
+//		String input = "1";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		
+//		Scanner keyboard = new Scanner(System.in);
+////		int option = main.getNextInt("Enter 1 for sides, 2 for points: ", keyboard);
+////        keyboard.close();
+//		assertEquals(1, main.getNextInt("Enter 1 for sides, 2 for points: ", keyboard), 0.0);
+//	}
+//	
+//	
+//	@Test(expected = InputMismatchException.class)
+//	public void test_getNextDouble_2() {
+//		String input = "a";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		
+//		Scanner keyboard = new Scanner(System.in);
+//		double side = main.getNextDouble("Enter first side length: ", keyboard);
+//        keyboard.close();
+//	}
+	
+//	@Test
+//	public void test_method() {
+//		String input = "1";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		
+//		Scanner keyboard = new Scanner(System.in);
+//		int calculated_method = keyboard.nextInt();
+////		int option = main.getNextInt("Enter 1 for sides, 2 for points: ", keyboard);
+////		assertEquals("Method input", 1, keyboard.nextInt());
+//		OutputStream os = new ByteArrayOutputStream();
+//		System.out.println("Enter first side length: ");
+//		assertEquals("Enter first side length: \n", os.toString());
+//		
+//	}
+	
+	@Test
+	public void calculateArea_1() {
+		String input = "1 3 5";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		assertEquals("The area of the triangle is: " + System.getProperty("line.separator"), os.toString());
+	}
+	
+	@Test
+	public void printResultToSystemOut_1() {
+		OutputStream os = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(os);
+		System.setOut(ps);
+		
+		Main main = new Main();
+		main.printResult("The area of the triangle is: 1");
+		
+		assertEquals("The area of the triangle is: 1" + System.getProperty("line.separator"), os.toString());
+	}
+	
+	@Test
+	public void writesTextToSystemOut_1() {
+		OutputStream os = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(os);
+		System.setOut(ps);
+		
+//		System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle.");
+		System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle1.");
+//		System.out.println(systemOutRule.getLog());
+//		assertEquals("Please choose to enter the side lengths or the point coodinates of the triangle1.\n", systemOutRule.getLog());
+		
+		assertEquals("Please choose to enter the side lengths or the point coodinates of the triangle1." + System.getProperty("line.separator"), os.toString());
+
+		//Restore normal output
+		System.setOut(System.out);
+//		
+//		System.out.println("Please choose");
+//		System.out.println(os.toString());
+	}
+}

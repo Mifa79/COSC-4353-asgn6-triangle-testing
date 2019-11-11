@@ -1,0 +1,92 @@
+import java.util.InputMismatchException;
+import org.junit.Rule;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import java.io.*;
+import java.util.Scanner;
+import org.junit.Test;
+
+
+public class MainTest {
+	
+	@Rule
+    public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+	Main main = new Main();
+	
+	
+	@Test
+	public void test_getNextDouble_1() {
+		String input = "3 5";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Scanner keyboard = new Scanner(System.in);
+		double side = main.getNextDouble("Enter first side length: ", keyboard);
+		System.out.println(side);
+		
+		double side1 = main.getNextDouble("Enter first side length: ", keyboard);
+		System.out.println(side1);
+		
+		assertEquals(3, side, 0.0);
+	}
+	
+	
+	@Test
+	public void calculateArea_1() {
+		String input = "1 3 4 5";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Main main = new Main();
+		String result = main.calculateArea();
+		assertEquals("The area of the triangle is: 6.0", result);
+	}
+
+	
+	@Test
+	public void calculateArea_2() {
+		String input = "2 0 0 3 0 0 4";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Main main = new Main();
+		String result = main.calculateArea();
+		assertEquals("The area of the triangle is: 6.0", result);
+	}
+	
+	
+	@Test(expected = InputMismatchException.class)
+	public void ExceptionCalculateArea_1() {
+		String input = "2 a 0 3 0 0 4";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Main main = new Main();
+		String result = main.calculateArea();
+	}
+	
+	
+	@Test
+	public void printResultToSystemOut_1() {
+		OutputStream os = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(os);
+		System.setOut(ps);
+		
+		Main main = new Main();
+		main.printResult("The area of the triangle is: 1");
+		assertEquals("The area of the triangle is: 1" + System.getProperty("line.separator"), os.toString());
+	}
+	
+	
+	@Test
+	public void writesTextToSystemOut_1() {
+		OutputStream os = new ByteArrayOutputStream();
+		PrintStream ps = new PrintStream(os);
+		System.setOut(ps);
+		System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle1.");
+		assertEquals("Please choose to enter the side lengths or the point coodinates of the triangle1." + System.getProperty("line.separator"), os.toString());
+		System.setOut(System.out);
+
+	}
+}

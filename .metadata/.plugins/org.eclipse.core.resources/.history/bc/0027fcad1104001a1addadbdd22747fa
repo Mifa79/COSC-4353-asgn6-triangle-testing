@@ -1,0 +1,27 @@
+import java.util.InputMismatchException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.*;
+import java.util.Scanner;
+
+import org.junit.Test;
+
+public class MainTest {
+	
+	Main main = new Main();
+	
+	@Test
+	public void test_getNextDouble() {
+		String input = "3";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Scanner keyboard = new Scanner(System.in);
+		double side = main.getNextDouble("Enter first side length: ", keyboard);
+        keyboard.close();
+		assertEquals(3, side, 0.0);
+	}
+
+}

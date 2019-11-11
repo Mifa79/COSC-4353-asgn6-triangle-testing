@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MainTest" project="maven-demo" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="MainTest" time="4.35">
+    <testcase name="test_getNextDouble" classname="MainTest" time="4.35"/>
+  </testsuite>
+</testrun>

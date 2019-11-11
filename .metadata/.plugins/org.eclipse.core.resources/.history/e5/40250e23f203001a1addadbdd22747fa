@@ -1,0 +1,11 @@
+import java.util.InputMismatchException;
+
+import org.junit.Test;
+
+public class MainTest {
+	@Test(expected = InputMismatchException.class)
+	public void test_InputMismatchException_12() {
+		
+	}
+
+}

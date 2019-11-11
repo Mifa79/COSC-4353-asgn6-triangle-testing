@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Triangle.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maven-demo</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Triangle.java</span></div><h1>Triangle.java</h1><pre class="source lang-java linenums">import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.*;
+import java.lang.*;
+import java.util.InputMismatchException;
+
+public class Triangle {
+    private double side1, side2, side3;
+    private Point point1, point2, point3;
+    private double semiPerimeter;
+    private double area;
+
+<span class="fc" id="L13">    public Triangle(double s1, double s2, double s3) {</span>
+<span class="fc bfc" id="L14" title="All 6 branches covered.">        if ((s1 &lt;= 0) || (s2 &lt;=0) || (s3 &lt;= 0))</span>
+<span class="fc" id="L15">            throw new InputMismatchException(&quot;invalid input&quot;);</span>
+
+<span class="fc bfc" id="L17" title="All 6 branches covered.">        if (((s1 + s2) &lt;= s3) || ((s2 + s3) &lt;= s1) || ((s1 + s3) &lt;= s2))</span>
+<span class="fc" id="L18">            throw new InputMismatchException(&quot;invalid input&quot;);</span>
+
+<span class="fc" id="L20">        side1 = s1;</span>
+<span class="fc" id="L21">        side2 = s2;</span>
+<span class="fc" id="L22">        side3 = s3;</span>
+<span class="fc" id="L23">    }</span>
+
+<span class="fc" id="L25">    public Triangle(Point pt1, Point pt2, Point pt3) {</span>
+<span class="fc bfc" id="L26" title="All 6 branches covered.">        if (pt1.equals(pt2) || pt1.equals(pt3) || pt2.equals(pt3))</span>
+<span class="fc" id="L27">            throw new InputMismatchException(&quot;invalid input&quot;);</span>
+
+        // Compare the side length of the triangle to see if it is an invalid triangle
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (calSide(pt1, pt2) + calSide(pt1, pt3) &lt;= calSide(pt2, pt3) ||</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">                calSide(pt1, pt2) + calSide(pt2, pt3) &lt;= calSide(pt1, pt3) ||</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">                calSide(pt1, pt3) + calSide(pt2, pt3) &lt;= calSide(pt1, pt2))</span>
+<span class="fc" id="L33">            throw new InputMismatchException(&quot;invalid input&quot;);</span>
+
+<span class="fc" id="L35">        point1 = pt1;</span>
+<span class="fc" id="L36">        point2 = pt2;</span>
+<span class="fc" id="L37">        point3 = pt3;</span>
+
+<span class="fc" id="L39">        double side12 = calSide(point1, point2);</span>
+<span class="fc" id="L40">        double side13 = calSide(point1, point3);</span>
+<span class="fc" id="L41">        double side23 = calSide(point2, point3);</span>
+
+<span class="fc" id="L43">        side1 = side12;</span>
+<span class="fc" id="L44">        side2 = side13;</span>
+<span class="fc" id="L45">        side3 = side23;</span>
+<span class="fc" id="L46">    }</span>
+
+    public double calSide(Point pt1, Point pt2) {
+<span class="fc" id="L49">        double sideSquare = (pt2.getX() - pt1.getX()) * (pt2.getX() - pt1.getX()) + (pt2.getY() - pt1.getY()) * (pt2.getY() - pt1.getY());</span>
+<span class="fc" id="L50">        double side = Math.pow(sideSquare, 0.5);</span>
+<span class="fc" id="L51">        return side;</span>
+    }
+
+
+    public void defType() {
+//        System.out.println(side1*side1);
+//        System.out.println(side2*side2);
+//        System.out.println(side3*side3);
+<span class="fc bfc" id="L59" title="All 4 branches covered.">        if (side1 == side2 &amp;&amp; side2 == side3)</span>
+<span class="fc" id="L60">            System.out.println(&quot;The triangle is equilateral.&quot;);</span>
+<span class="fc bfc" id="L61" title="All 12 branches covered.">        if ((side1 == side2 &amp;&amp; side3 != side1) || (side2 == side3 &amp;&amp; side1 != side2) || (side1 == side3 &amp;&amp; side2 != side1))</span>
+<span class="fc" id="L62">            System.out.println(&quot;The triangle is isoceles.&quot;);</span>
+<span class="fc bfc" id="L63" title="All 6 branches covered.">        if (side1 != side2 &amp;&amp; side2 != side3 &amp;&amp; side3 != side1)</span>
+<span class="fc" id="L64">            System.out.println(&quot;The triangle is scalene.&quot;);</span>
+
+<span class="fc" id="L66">        double side1Square = side1*side1;</span>
+<span class="fc" id="L67">        double side2Square = side2*side2;</span>
+<span class="fc" id="L68">        double side3Square = side3*side3;</span>
+<span class="fc" id="L69">        double truncatedSide1Square = BigDecimal.valueOf(side1Square).setScale(5, RoundingMode.HALF_UP).doubleValue();</span>
+<span class="fc" id="L70">        double truncatedSide2Square = BigDecimal.valueOf(side2Square).setScale(5, RoundingMode.HALF_UP).doubleValue();</span>
+<span class="fc" id="L71">        double truncatedSide3Square = BigDecimal.valueOf(side3Square).setScale(5, RoundingMode.HALF_UP).doubleValue();</span>
+
+<span class="fc bfc" id="L73" title="All 6 branches covered.">        if ((truncatedSide1Square == truncatedSide2Square + truncatedSide3Square) ||</span>
+                (truncatedSide2Square == truncatedSide1Square + truncatedSide3Square) ||
+                (truncatedSide3Square == truncatedSide1Square + truncatedSide2Square))
+<span class="fc" id="L76">            System.out.println(&quot;The triangle is right.&quot;);</span>
+<span class="fc" id="L77">    }</span>
+
+
+    public double getSemiPerimeter() {
+<span class="fc" id="L81">        semiPerimeter = (side1 + side2 + side3)/2;</span>
+<span class="fc" id="L82">        return semiPerimeter;</span>
+    }
+
+    public double getArea() {
+<span class="fc" id="L86">        this.getSemiPerimeter();</span>
+<span class="fc" id="L87">        double areaSquare = semiPerimeter * (semiPerimeter - side1) * (semiPerimeter - side2) * (semiPerimeter - side3);</span>
+<span class="fc" id="L88">        area = Math.pow(areaSquare, 0.5);</span>
+<span class="fc" id="L89">        return area;</span>
+    }
+    
+    public double getSide1(){
+<span class="fc" id="L93">    	return side1;</span>
+    }
+    
+    public double getSide2() {
+<span class="fc" id="L97">    	return side2;</span>
+    }
+    
+    public double getSide3() {
+<span class="fc" id="L101">    	return side3;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

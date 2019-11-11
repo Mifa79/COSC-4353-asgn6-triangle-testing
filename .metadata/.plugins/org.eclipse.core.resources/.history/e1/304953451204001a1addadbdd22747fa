@@ -1,0 +1,44 @@
+import java.util.InputMismatchException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.io.*;
+import java.util.Scanner;
+
+import org.junit.Test;
+
+public class MainTest {
+	
+	Main main = new Main();
+	
+	@Test(expected = InputMismatchException.class)
+	public void test_method() {
+		String input = "a";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		Scanner keyboard = new Scanner(System.in);
+        System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle.");
+        System.out.println("Enter 1 for sides, 2 for points: ");
+        int method = keyboard.nextInt();
+//        double side1 = keyboard.nextDouble();
+        keyboard.close();
+//		assertEquals(3, side1, 0.0);
+	}
+	
+//	@Test
+//	public void test_getNextDouble() {
+//		String input = "3";
+//		InputStream in = new ByteArrayInputStream(input.getBytes());
+//		System.setIn(in);
+//		
+//		Scanner keyboard = new Scanner(System.in);
+////		double side = main.getNextDouble("Enter first side length: ", keyboard);
+//        System.out.println("Enter first side length: ");
+//        double side1 = keyboard.nextDouble();
+//        keyboard.close();
+//		assertEquals(3, side1, 0.0);
+//	}
+
+}

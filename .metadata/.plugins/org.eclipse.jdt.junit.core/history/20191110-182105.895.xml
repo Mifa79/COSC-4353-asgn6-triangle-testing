@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MainTest.test_getNextDouble_1" project="maven-demo" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="test_getNextDouble_1" classname="MainTest" time="0.005"/>
+</testrun>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">maven-demo</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">import java.util.*;
+import java.io.*;
+
+
+<span class="fc" id="L5">public class Main {</span>
+    public static void main (String[] args) throws IOException {
+
+<span class="nc" id="L8">    	String result = calculateArea();</span>
+<span class="nc" id="L9">    	printResult(result);</span>
+<span class="nc" id="L10">    }</span>
+    
+    public static String calculateArea() throws InputMismatchException {
+<span class="fc" id="L13">    	 String result = &quot;&quot;;</span>
+    	 
+<span class="fc" id="L15">    	 Scanner keyboard = new Scanner(System.in);</span>
+<span class="fc" id="L16">         System.out.println(&quot;Please choose to enter the side lengths or the point coodinates of the triangle.&quot;);</span>
+<span class="fc" id="L17">         System.out.println(&quot;Enter 1 for sides, 2 for points: &quot;);</span>
+<span class="fc" id="L18">         int method = keyboard.nextInt();</span>
+         
+
+<span class="fc bfc" id="L21" title="All 2 branches covered.">         if (method == 1) {</span>
+<span class="fc" id="L22">             System.out.println(&quot;Enter first side length: &quot;);</span>
+<span class="fc" id="L23">             double side1 = keyboard.nextDouble();</span>
+
+<span class="fc" id="L25">             System.out.println(&quot;Enter second side length: &quot;);</span>
+<span class="fc" id="L26">             double side2 = keyboard.nextDouble();</span>
+
+<span class="fc" id="L28">             System.out.println(&quot;Enter third side length: &quot;);</span>
+<span class="fc" id="L29">             double side3 = keyboard.nextDouble();</span>
+
+<span class="fc" id="L31">             Triangle yourTriangle = new Triangle(side1, side2, side3);</span>
+<span class="fc" id="L32">             yourTriangle.defType();</span>
+<span class="fc" id="L33">             result = &quot;The area of the triangle is: &quot; + yourTriangle.getArea();</span>
+         }
+
+<span class="fc bfc" id="L36" title="All 2 branches covered.">         if (method == 2) {</span>
+<span class="fc" id="L37">             System.out.println(&quot;Enter x value of the first point: &quot;);</span>
+<span class="fc" id="L38">             double x1 = keyboard.nextDouble();</span>
+<span class="fc" id="L39">             System.out.println(&quot;Enter y value of the first point: &quot;);</span>
+<span class="fc" id="L40">             double y1 = keyboard.nextDouble();</span>
+<span class="fc" id="L41">             Point yourPoint1 = new Point(x1, y1);</span>
+
+<span class="fc" id="L43">             System.out.println(&quot;Enter x value of the second point: &quot;);</span>
+<span class="fc" id="L44">             double x2 = keyboard.nextDouble();</span>
+<span class="fc" id="L45">             System.out.println(&quot;Enter y value of the second point: &quot;);</span>
+<span class="fc" id="L46">             double y2 = keyboard.nextDouble();</span>
+<span class="fc" id="L47">             Point yourPoint2 = new Point(x2, y2);</span>
+
+<span class="fc" id="L49">             System.out.println(&quot;Enter x value of the third point: &quot;);</span>
+<span class="fc" id="L50">             double x3 = keyboard.nextDouble();</span>
+<span class="fc" id="L51">             System.out.println(&quot;Enter y value of the third point: &quot;);</span>
+<span class="fc" id="L52">             double y3 = keyboard.nextDouble();</span>
+<span class="fc" id="L53">             Point yourPoint3 = new Point(x3, y3);</span>
+
+<span class="fc" id="L55">             Triangle yourTriangle = new Triangle(yourPoint1, yourPoint2, yourPoint3);</span>
+<span class="fc" id="L56">             yourTriangle.defType();</span>
+<span class="fc" id="L57">             result = &quot;The area of the triangle is: &quot; + yourTriangle.getArea();</span>
+         }
+    	 
+<span class="fc" id="L60">    	 return result;</span>
+    }
+    
+    
+    
+    public static void printResult(String result) {
+<span class="fc" id="L66">    	System.out.println(result);</span>
+<span class="fc" id="L67">    }</span>
+    
+    
+    
+    public static double getNextDouble(String instruction, Scanner keyboard) {
+<span class="fc" id="L72">    	System.out.println(instruction);</span>
+<span class="fc" id="L73">        double var = keyboard.nextDouble();</span>
+<span class="fc" id="L74">        return var;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

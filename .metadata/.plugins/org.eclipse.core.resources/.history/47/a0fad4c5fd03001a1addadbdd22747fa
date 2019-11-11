@@ -1,0 +1,27 @@
+import java.util.InputMismatchException;
+
+import static org.junit.Assert.assertEquals;
+
+import java.io.*;
+import java.util.Scanner;
+
+import org.junit.Test;
+
+public class MainTest {
+	@Test
+	public void test_InputMismatchException_1() {
+		try {
+			Scanner keyboard = new Scanner(System.in);
+	        System.out.println("Please choose to enter the side lengths or the point coodinates of the triangle.");
+	        System.out.println("Enter 1 for sides, 2 for points: ");
+	        int method = keyboard.nextInt();
+		} catch (InputMismatchException e) {
+	        System.out.println("Invalid input.");
+	    }
+		OutputStream os = new ByteArrayOutputStream();
+		assertEquals("Invalid input..\n", os.toString());
+	        
+	
+	}
+
+}
